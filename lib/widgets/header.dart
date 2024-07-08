@@ -7,12 +7,14 @@ class Header extends StatelessWidget {
   final Function() nextMonth;
   final Function() previousMonth;
   final DateTime selectedDate;
+  final double totalPrice;
   const Header({
     Key? key,
     required this.showMonthPick,
     required this.nextMonth,
     required this.previousMonth,
     required this.selectedDate,
+    required this.totalPrice,
   }) : super(key: key);
 
   @override
@@ -45,7 +47,7 @@ class Header extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  "500,000",
+                  totalPrice.toStringAsFixed(0),
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 38),
                 ),
                 Text(

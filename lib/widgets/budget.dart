@@ -1,11 +1,22 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:shaxsiyhamyon/widgets/progress_bar.dart';
 
 class Budget extends StatelessWidget {
-  const Budget({super.key});
+  final double totalPrice;
+  Budget({
+    Key? key,
+    required this.totalPrice,
+  }) : super(key: key);
+
+  int monthBudgetLimit = 10000000;
 
   @override
   Widget build(BuildContext context) {
+    double percentage = (totalPrice * 100 / monthBudgetLimit) > 100
+        ? 100
+        : totalPrice * 100 / monthBudgetLimit;
     return Positioned(
       bottom: 0,
       right: 0,
@@ -32,15 +43,15 @@ class Budget extends StatelessWidget {
                       Text("Oylik byudjet:"),
                       TextButton.icon(
                         onPressed: () {},
-                        label: Text("100,011 so'm"),
+                        label: Text("$monthBudgetLimit so'm"),
                         icon: Icon(Icons.edit),
                       ),
                     ],
                   ),
-                  Text("5.%"),
+                  Text("${percentage.toStringAsFixed(0)}%"),
                 ],
               ),
-              ProgressBar()
+              ProgressBar(percentage: percentage)
             ],
           ),
         ),

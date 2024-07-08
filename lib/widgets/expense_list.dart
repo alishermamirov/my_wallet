@@ -1,7 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
+import 'package:shaxsiyhamyon/models/expense.dart';
+import 'package:shaxsiyhamyon/widgets/list_item.dart';
+
 class ExpenseList extends StatelessWidget {
-  const ExpenseList({super.key});
+  final List<Expense> expenseItems;
+
+  const ExpenseList({
+    Key? key,
+    required this.expenseItems,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +30,9 @@ class ExpenseList extends StatelessWidget {
           ),
         ),
         child: ListView.builder(
+          itemCount: expenseItems.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              leading: CircleAvatar(),
-              title: Text("title"),
-              subtitle: Text("sana"),
-              trailing: Text("summa"),
-            );
+            return ListItem(expense: expenseItems[index]);
           },
         ),
       ),
