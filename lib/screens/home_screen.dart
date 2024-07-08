@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
+import 'package:shaxsiyhamyon/widgets/body.dart';
 import 'package:shaxsiyhamyon/widgets/header.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -63,44 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   showMonthPick: showMonthPick,
                   nextMonth: nextMonth,
                   previousMonth: previousMonth),
-              Expanded(
-                child: Stack(
-                  children: [
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      left: 0,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 480,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(230, 240, 250, 1),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(30),
-                            topLeft: Radius.circular(30),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      left: 0,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 350,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(30),
-                            topLeft: Radius.circular(30),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )
+              Body(),
             ],
           )),
     );
