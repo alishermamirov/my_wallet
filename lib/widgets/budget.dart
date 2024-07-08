@@ -1,22 +1,47 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:shaxsiyhamyon/widgets/edit_budget.dart';
 
 import 'package:shaxsiyhamyon/widgets/progress_bar.dart';
 
-class Budget extends StatelessWidget {
+class Budget extends StatefulWidget {
   final double totalPrice;
   Budget({
     Key? key,
     required this.totalPrice,
   }) : super(key: key);
 
+  @override
+  State<Budget> createState() => _BudgetState();
+}
+
+class _BudgetState extends State<Budget> {
   int monthBudgetLimit = 10000000;
+
+  void showBudget(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return EditBudget(
+          monthBudgetLimit: monthBudgetLimit,
+          editBudgetlim: editBudgetlim,
+        );
+      },
+    );
+  }
+
+  void editBudgetlim(int newValue) {
+    setState(() {
+      monthBudgetLimit = newValue;
+      print(newValue);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    double percentage = (totalPrice * 100 / monthBudgetLimit) > 100
+    double percentage = (widget.totalPrice * 100 / monthBudgetLimit) > 100
         ? 100
-        : totalPrice * 100 / monthBudgetLimit;
+        : widget.totalPrice * 100 / monthBudgetLimit;
     return Positioned(
       bottom: 0,
       right: 0,
@@ -42,7 +67,9 @@ class Budget extends StatelessWidget {
                     children: [
                       Text("Oylik byudjet:"),
                       TextButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          showBudget(context);
+                        },
                         label: Text("$monthBudgetLimit so'm"),
                         icon: Icon(Icons.edit),
                       ),

@@ -19,23 +19,44 @@ class ExpenseList extends StatelessWidget {
       right: 0,
       left: 0,
       child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 380,
-        clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(30),
-            topLeft: Radius.circular(30),
+          width: MediaQuery.of(context).size.width,
+          height: 380,
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30),
+              topLeft: Radius.circular(30),
+            ),
           ),
-        ),
-        child: ListView.builder(
-          itemCount: expenseItems.length,
-          itemBuilder: (context, index) {
-            return ListItem(expense: expenseItems[index]);
-          },
-        ),
-      ),
+          child: expenseItems.length > 0
+              ? ListView.builder(
+                  itemCount: expenseItems.length,
+                  itemBuilder: (context, index) {
+                    return ListItem(expense: expenseItems[index]);
+                  },
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Xarajat yo'q",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Image.asset(
+                        "assets/money-bag.png",
+                        width: 200,
+                      )
+                    ],
+                  ),
+                )),
     );
   }
 }
