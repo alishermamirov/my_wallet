@@ -58,5 +58,7 @@ class Expenses {
     );
   }
 
-  
+  void deleteExpense(String id) {
+    _items.removeWhere((element) => element.id == id);
+  }
 }
