@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:intl/intl.dart';
@@ -9,9 +8,9 @@ class AddExpense extends StatefulWidget {
   final Function addExpenses;
 
   const AddExpense({
-    Key? key,
+    super.key,
     required this.addExpenses,
-  }) : super(key: key);
+  });
 
   @override
   State<AddExpense> createState() => _AddExpenseState();
@@ -105,7 +104,7 @@ class _AddExpenseState extends State<AddExpense> {
                   onPressed: () {
                     showDatePick(context);
                   },
-                  child: Text("Sana tanlash"),
+                  child: const Text("Sana tanlash"),
                 ),
               ],
             ),
@@ -113,11 +112,11 @@ class _AddExpenseState extends State<AddExpense> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _selectedIcon == null
-                    ? Text("Ikonka tanlanmagan")
+                    ? const Text("Ikonka tanlanmagan")
                     : Icon(_selectedIcon),
                 TextButton(
                   onPressed: () => showIcons(context),
-                  child: Text("ikonka tanlash"),
+                  child: const Text("ikonka tanlash"),
                 ),
               ],
             ),

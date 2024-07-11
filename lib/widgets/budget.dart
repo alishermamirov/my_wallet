@@ -6,10 +6,10 @@ import 'package:shaxsiyhamyon/widgets/progress_bar.dart';
 
 class Budget extends StatefulWidget {
   final double totalPrice;
-  Budget({
-    Key? key,
+  const Budget({
+    super.key,
     required this.totalPrice,
-  }) : super(key: key);
+  });
 
   @override
   State<Budget> createState() => _BudgetState();
@@ -35,7 +35,6 @@ class _BudgetState extends State<Budget> {
   void editBudgetlim(int newValue) {
     setState(() {
       monthBudgetLimit = newValue;
-      print(newValue);
     });
   }
 
@@ -64,13 +63,13 @@ class _BudgetState extends State<Budget> {
                 children: [
                   Row(
                     children: [
-                      Text("Oylik byudjet:"),
+                      const Text("Oylik byudjet:"),
                       TextButton.icon(
                         onPressed: () {
                           showBudget(context);
                         },
                         label: Text("$monthBudgetLimit so'm"),
-                        icon: Icon(Icons.edit),
+                        icon: const Icon(Icons.edit),
                       ),
                     ],
                   ),

@@ -8,10 +8,10 @@ class ListItem extends StatelessWidget {
   final Expense expense;
   final Function deleteExpense;
   const ListItem({
-    Key? key,
+    super.key,
     required this.expense,
     required this.deleteExpense,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +21,9 @@ onDismissed: (direction) {
 },
       direction: DismissDirection.endToStart,
       background: Container(
-        padding: EdgeInsets.only(right: 20),
+        padding: const EdgeInsets.only(right: 20),
         alignment: Alignment.centerRight,
-        child:  Icon(Icons.delete,color: Colors.red,)),
+        child:  const Icon(Icons.delete,color: Colors.red,)),
       key: ValueKey(expense.id),
       child: ListTile(
         leading: CircleAvatar(

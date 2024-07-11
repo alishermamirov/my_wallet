@@ -5,11 +5,11 @@ import 'package:shaxsiyhamyon/widgets/adaptive_button.dart';
 class EditBudget extends StatefulWidget {
   final int monthBudgetLimit;
   final Function editBudgetlim;
-  EditBudget({
-    Key? key,
+  const EditBudget({
+    super.key,
     required this.monthBudgetLimit,
     required this.editBudgetlim,
-  }) : super(key: key);
+  });
 
   @override
   State<EditBudget> createState() => _EditBudgetState();
@@ -47,13 +47,13 @@ class _EditBudgetState extends State<EditBudget> {
               ? MediaQuery.of(context).viewInsets.bottom + 10
               : 50),
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             TextField(
               controller: budgetController,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: "Budget limit",
                 border: OutlineInputBorder(),
               ),

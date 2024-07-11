@@ -9,17 +9,17 @@ class AdaptiveTextfield extends StatelessWidget {
   final String title;
   final TextInputType keyType;
   const AdaptiveTextfield({
-    Key? key,
+    super.key,
     required this.controller,
     required this.title,
     required this.keyType,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Platform.isIOS
         ? CupertinoTextField(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             controller: controller,
             placeholder: title,
             keyboardType: keyType,
@@ -27,7 +27,7 @@ class AdaptiveTextfield extends StatelessWidget {
         : TextField(
             controller: controller,
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               labelText: title,
             ),
             keyboardType: keyType,

@@ -10,11 +10,11 @@ class Body extends StatelessWidget {
   final List<Expense> expenseItems;
   final Function deleteExpense;
   const Body({
-    Key? key,
+    super.key,
     required this.totalPrice,
     required this.expenseItems,
     required this.deleteExpense,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
       double totalPrice, double devicHeight, double deviceWidth) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: devicHeight * 0.2,
           width: deviceWidth,
           child: Header(
@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
             previousMonth: previousMonth,
           ),
         ),
-        Container(
+        SizedBox(
           height: devicHeight * 0.8,
           width: deviceWidth,
           child: Body(
@@ -131,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           _showExpensseList
-              ? Container(
+              ? SizedBox(
                   height: devicHeight,
                   width: deviceWidth,
                   child: Body(
@@ -140,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     deleteExpense: deleteExpense,
                   ),
                 )
-              : Container(
+              : SizedBox(
                   height: devicHeight,
                   width: deviceWidth,
                   child: Header(
@@ -181,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: appbar,
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: isLandscape
             ? _showLandscape(totalPrice, devicHeight, deviceWidth)

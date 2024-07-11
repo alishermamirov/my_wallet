@@ -9,11 +9,11 @@ class AdaptiveButton extends StatelessWidget {
   final String title;
   final bool filled;
   const AdaptiveButton({
-    Key? key,
+    super.key,
     required this.submit,
     required this.title,
     this.filled = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

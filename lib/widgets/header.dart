@@ -9,13 +9,13 @@ class Header extends StatelessWidget {
   final DateTime selectedDate;
   final double totalPrice;
   const Header({
-    Key? key,
+    super.key,
     required this.showMonthPick,
     required this.nextMonth,
     required this.previousMonth,
     required this.selectedDate,
     required this.totalPrice,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class Header extends StatelessWidget {
           },
           child: Text(
             DateFormat("MMMM, y").format(selectedDate),
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22),
+            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 22),
           ),
         ),
         Row(
@@ -38,7 +38,7 @@ class Header extends StatelessWidget {
               onPressed: selectedDate.year == DateTime(2023).year
                   ? null
                   : previousMonth,
-              icon: Icon(
+              icon: const Icon(
                 Icons.chevron_left_rounded,
                 size: 40,
               ),
@@ -48,9 +48,9 @@ class Header extends StatelessWidget {
               children: [
                 Text(
                   totalPrice.toStringAsFixed(0),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 38),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 38),
                 ),
-                Text(
+                const Text(
                   "so'm",
                   style: TextStyle(
                       fontWeight: FontWeight.w400, fontSize: 20, height: 0.5),
@@ -62,7 +62,7 @@ class Header extends StatelessWidget {
                       selectedDate.month == DateTime.now().month
                   ? null
                   : nextMonth,
-              icon: Icon(
+              icon: const Icon(
                 Icons.chevron_right_rounded,
                 size: 40,
               ),

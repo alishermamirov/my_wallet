@@ -9,10 +9,10 @@ class ExpenseList extends StatelessWidget {
   final Function deleteExpense;
 
   const ExpenseList({
-    Key? key,
+    super.key,
     required this.expenseItems,
     required this.deleteExpense,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class ExpenseList extends StatelessWidget {
             topLeft: Radius.circular(30),
           ),
         ),
-        child: expenseItems.length > 0
+        child: expenseItems.isNotEmpty
             ? ListView.builder(
                 itemCount: expenseItems.length,
                 itemBuilder: (context, index) {

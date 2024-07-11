@@ -17,7 +17,7 @@ class Expense {
 }
 
 class Expenses {
-  List<Expense> _items = [
+  final List<Expense> _items = [
     Expense(
         id: "e1",
         title: "xarajat1",

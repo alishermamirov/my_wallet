@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class ProgressBar extends StatelessWidget {
   final double percentage;
   const ProgressBar({
-    Key? key,
+    super.key,
     required this.percentage,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +15,10 @@ class ProgressBar extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        color: Color.fromRGBO(212, 219, 239, 1),
+        color: const Color.fromRGBO(212, 219, 239, 1),
       ),
       child: AnimatedFractionallySizedBox(
-        duration: Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 500),
         heightFactor: 2,
         widthFactor: percentage / 100,
         alignment: Alignment.centerLeft,
@@ -31,8 +31,9 @@ class ProgressBar extends StatelessWidget {
                 Colors.blue.shade100,
                 Colors.blue,
               ]),
+              // ignore: prefer_const_literals_to_create_immutables
               boxShadow: [
-                BoxShadow(color: Colors.blue, blurRadius: 6, spreadRadius: -2)
+                const BoxShadow(color: Colors.blue, blurRadius: 6, spreadRadius: -2)
               ]),
         ),
       ),
