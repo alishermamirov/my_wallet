@@ -1,10 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:intl/intl.dart';
+import 'package:shaxsiyhamyon/widgets/adaptive_button.dart';
+import 'package:shaxsiyhamyon/widgets/adaptive_textfield.dart';
 
 class AddExpense extends StatefulWidget {
   final Function addExpenses;
@@ -85,35 +84,17 @@ class _AddExpenseState extends State<AddExpense> {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Platform.isAndroid
-                  ? CupertinoTextField(
-                      padding: EdgeInsets.all(10),
-                      controller: titleController,
-                      placeholder: "Harajat nomi",
-                    )
-                  : TextField(
-                      controller: titleController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Harajat nomi",
-                      ),
-                    ),
+              child: AdaptiveTextfield(
+                controller: titleController,
+                title: "Harajat nomi",
+                keyType: TextInputType.name,
+              ),
             ),
-            Platform.isAndroid
-                ? CupertinoTextField(
-                    padding: EdgeInsets.all(10),
-                    controller: amountController,
-                    keyboardType: TextInputType.number,
-                    placeholder: "Harajat miqdori",
-                  )
-                : TextField(
-                    controller: amountController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "Harajat miqdori",
-                    ),
-                  ),
+            AdaptiveTextfield(
+              controller: amountController,
+              title: "Harajat miqdori",
+              keyType: TextInputType.number,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -143,17 +124,15 @@ class _AddExpenseState extends State<AddExpense> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("Bekor qilish"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    submit(context);
-                  },
-                  child: Text("Saqlash"),
+                AdaptiveButton(
+                    submit: () {
+                      Navigator.of(context).pop();
+                    },
+                    title: "Bekor qilish"),
+                AdaptiveButton(
+                  filled: true,
+                  submit: submit,
+                  title: "Saqlash",
                 ),
               ],
             ),

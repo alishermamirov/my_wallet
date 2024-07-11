@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:shaxsiyhamyon/widgets/adaptive_button.dart';
 
 class EditBudget extends StatefulWidget {
   final int monthBudgetLimit;
@@ -58,21 +59,20 @@ class _EditBudgetState extends State<EditBudget> {
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("Bekor qilish"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    submit(context);
-                  },
-                  child: Text("Saqlash"),
+                AdaptiveButton(
+                    submit: () {
+                      Navigator.of(context).pop();
+                    },
+                    title: "Bekor qilish"),
+                AdaptiveButton(
+                  filled: true,
+                  submit: submit,
+                  title: "Saqlash",
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
