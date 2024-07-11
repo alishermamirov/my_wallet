@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:shaxsiyhamyon/models/expense.dart';
@@ -116,11 +118,11 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "Ro'yxatni ko'rsatish",
                 style: TextStyle(fontSize: 18),
               ),
-              Switch(
+              Switch.adaptive(
                 value: _showExpensseList,
                 onChanged: (value) {
                   toggleSwitch();
@@ -142,11 +144,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: devicHeight,
                   width: deviceWidth,
                   child: Header(
-                      totalPrice: totalPrice,
-                      selectedDate: selectedDate,
-                      showMonthPick: showMonthPick,
-                      nextMonth: nextMonth,
-                      previousMonth: previousMonth),
+                    totalPrice: totalPrice,
+                    selectedDate: selectedDate,
+                    showMonthPick: showMonthPick,
+                    nextMonth: nextMonth,
+                    previousMonth: previousMonth,
+                  ),
                 ),
         ],
       ),
@@ -160,13 +163,20 @@ class _HomeScreenState extends State<HomeScreen> {
         MediaQuery.of(context).orientation == Orientation.landscape;
 
     final appbar = AppBar(
-      title: Text("My Wallet"),
+      title: const Text("My Wallet"),
       centerTitle: true,
+      actions: [
+        Platform.isIOS
+            ? IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.add),
+              )
+            : Container(),
+      ],
     );
     double devicHeight = MediaQuery.of(context).size.height -
         appbar.preferredSize.height -
         MediaQuery.of(context).padding.top;
-    print(devicHeight);
     double deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -177,12 +187,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ? _showLandscape(totalPrice, devicHeight, deviceWidth)
             : _showPortrait(totalPrice, devicHeight, deviceWidth),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showAddExpanse(context);
-        },
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: Platform.isAndroid
+          ? FloatingActionButton(
+              onPressed: () {
+                showAddExpanse(context);
+              },
+              child: const Icon(Icons.add),
+            )
+          : Container(),
     );
   }
 }

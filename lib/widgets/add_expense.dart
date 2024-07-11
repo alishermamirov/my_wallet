@@ -1,4 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:intl/intl.dart';
@@ -82,22 +85,35 @@ class _AddExpenseState extends State<AddExpense> {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: TextField(
-                controller: titleController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Harajat nomi",
-                ),
-              ),
+              child: Platform.isAndroid
+                  ? CupertinoTextField(
+                      padding: EdgeInsets.all(10),
+                      controller: titleController,
+                      placeholder: "Harajat nomi",
+                    )
+                  : TextField(
+                      controller: titleController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Harajat nomi",
+                      ),
+                    ),
             ),
-            TextField(
-              controller: amountController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Harajat miqdori",
-              ),
-            ),
+            Platform.isAndroid
+                ? CupertinoTextField(
+                    padding: EdgeInsets.all(10),
+                    controller: amountController,
+                    keyboardType: TextInputType.number,
+                    placeholder: "Harajat miqdori",
+                  )
+                : TextField(
+                    controller: amountController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Harajat miqdori",
+                    ),
+                  ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
