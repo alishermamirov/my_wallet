@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final expenses = Expenses();
   DateTime selectedDate = DateTime.now();
-
+  bool _showExpensseList = false;
   void showMonthPick(BuildContext context) {
     showMonthPicker(
       context: context,
@@ -68,15 +68,24 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void deleteExpense(String id){
+  void deleteExpense(String id) {
     setState(() {
       expenses.deleteExpense(id);
     });
   }
 
+  void toggleSwitch() {
+    setState(() {
+      _showExpensseList = !_showExpensseList;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    double totalPrice=expenses.totalPrice(selectedDate);
+    double totalPrice = expenses.totalPrice(selectedDate);
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -87,13 +96,32 @@ class _HomeScreenState extends State<HomeScreen> {
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Ro'yxatni ko'rsatish",
+                  style: TextStyle(fontSize: 18),
+                ),
+                Switch(
+                  value: _showExpensseList,
+                  onChanged: (value) {
+                    toggleSwitch();
+                  },
+                ),
+              ],
+            ),
             Header(
                 totalPrice: totalPrice,
                 selectedDate: selectedDate,
                 showMonthPick: showMonthPick,
                 nextMonth: nextMonth,
                 previousMonth: previousMonth),
-            Body(expenseItems: expenses.sortByMonth(selectedDate),totalPrice:totalPrice, deleteExpense: deleteExpense,),
+            Body(
+              expenseItems: expenses.sortByMonth(selectedDate),
+              totalPrice: totalPrice,
+              deleteExpense: deleteExpense,
+            ),
           ],
         ),
       ),
