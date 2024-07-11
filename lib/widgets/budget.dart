@@ -20,6 +20,8 @@ class _BudgetState extends State<Budget> {
 
   void showBudget(BuildContext context) {
     showModalBottomSheet(
+      isDismissible: false,
+      isScrollControlled: true,
       context: context,
       builder: (context) {
         return EditBudget(

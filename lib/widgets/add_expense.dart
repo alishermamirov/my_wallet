@@ -38,16 +38,20 @@ class _AddExpenseState extends State<AddExpense> {
     );
   }
 
-  void showIcons(BuildContext context){
-    showIconPicker(context,iconPackModes: [IconPack.allMaterial,IconPack.cupertino ] , ).then((value) {
-      setState(() {
-       if(value!=null){
-         _selectedIcon=value;
-       }
-      });
-    },);
+  void showIcons(BuildContext context) {
+    showIconPicker(
+      context,
+      iconPackModes: [IconPack.allMaterial, IconPack.cupertino],
+    ).then(
+      (value) {
+        setState(() {
+          if (value != null) {
+            _selectedIcon = value;
+          }
+        });
+      },
+    );
   }
-  
 
   void submit(BuildContext context) {
     if (titleController.text.isNotEmpty &&
@@ -111,9 +115,11 @@ class _AddExpenseState extends State<AddExpense> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-             _selectedIcon==null?   Text("Ikonka tanlanmagan"):Icon(_selectedIcon),
+                _selectedIcon == null
+                    ? Text("Ikonka tanlanmagan")
+                    : Icon(_selectedIcon),
                 TextButton(
-                  onPressed: () =>showIcons(context),
+                  onPressed: () => showIcons(context),
                   child: Text("ikonka tanlash"),
                 ),
               ],

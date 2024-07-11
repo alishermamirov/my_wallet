@@ -40,35 +40,41 @@ class _EditBudgetState extends State<EditBudget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(16),
-      child: Column(
-        children: [
-          TextField(
-            controller: budgetController,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              labelText: "Budget limit",
-              border: OutlineInputBorder(),
+    return SingleChildScrollView(
+      padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom > 0
+              ? MediaQuery.of(context).viewInsets.bottom + 10
+              : 50),
+      child: Container(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            TextField(
+              controller: budgetController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: "Budget limit",
+                border: OutlineInputBorder(),
+              ),
             ),
-          ),
-          Row(
-            children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text("Bekor qilish"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  submit(context);
-                },
-                child: Text("Saqlash"),
-              ),
-            ],
-          )
-        ],
+            Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("Bekor qilish"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    submit(context);
+                  },
+                  child: Text("Saqlash"),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

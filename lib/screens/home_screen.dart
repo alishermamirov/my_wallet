@@ -88,11 +88,12 @@ class _HomeScreenState extends State<HomeScreen> {
           height: devicHeight * 0.2,
           width: deviceWidth,
           child: Header(
-              totalPrice: totalPrice,
-              selectedDate: selectedDate,
-              showMonthPick: showMonthPick,
-              nextMonth: nextMonth,
-              previousMonth: previousMonth),
+            totalPrice: totalPrice,
+            selectedDate: selectedDate,
+            showMonthPick: showMonthPick,
+            nextMonth: nextMonth,
+            previousMonth: previousMonth,
+          ),
         ),
         Container(
           height: devicHeight * 0.8,
