@@ -42,14 +42,11 @@ class _BudgetState extends State<Budget> {
     double percentage = (widget.totalPrice * 100 / monthBudgetLimit) > 100
         ? 100
         : widget.totalPrice * 100 / monthBudgetLimit;
-    return Positioned(
-      bottom: 0,
-      right: 0,
-      left: 0,
-      child: Container(
+    return LayoutBuilder(builder: (context, constrains) {
+      return Container(
         width: MediaQuery.of(context).size.width,
-        height: 480,
-        decoration: BoxDecoration(
+        height: constrains.maxHeight,
+        decoration: const BoxDecoration(
           color: Color.fromRGBO(230, 240, 250, 1),
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(30),
@@ -82,7 +79,7 @@ class _BudgetState extends State<Budget> {
             ],
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

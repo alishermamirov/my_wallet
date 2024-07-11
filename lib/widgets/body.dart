@@ -18,13 +18,11 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Stack(
-        children: [
-          Budget(totalPrice:totalPrice),
-          ExpenseList(expenseItems: expenseItems, deleteExpense: deleteExpense,),
-        ],
-      ),
+    return Stack(
+      children: [
+        Budget(totalPrice:totalPrice),
+        ExpenseList(expenseItems: expenseItems, deleteExpense: deleteExpense,),
+      ],
     );
   }
 }

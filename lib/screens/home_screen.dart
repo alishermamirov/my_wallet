@@ -80,50 +80,101 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  Widget _showPortrait(
+      double totalPrice, double devicHeight, double deviceWidth) {
+    return Column(
+      children: [
+        Container(
+          height: devicHeight * 0.2,
+          width: deviceWidth,
+          child: Header(
+              totalPrice: totalPrice,
+              selectedDate: selectedDate,
+              showMonthPick: showMonthPick,
+              nextMonth: nextMonth,
+              previousMonth: previousMonth),
+        ),
+        Container(
+          height: devicHeight * 0.8,
+          width: deviceWidth,
+          child: Body(
+            expenseItems: expenses.sortByMonth(selectedDate),
+            totalPrice: totalPrice,
+            deleteExpense: deleteExpense,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _showLandscape(
+      double totalPrice, double devicHeight, double deviceWidth) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Ro'yxatni ko'rsatish",
+                style: TextStyle(fontSize: 18),
+              ),
+              Switch(
+                value: _showExpensseList,
+                onChanged: (value) {
+                  toggleSwitch();
+                },
+              ),
+            ],
+          ),
+          _showExpensseList
+              ? Container(
+                  height: devicHeight,
+                  width: deviceWidth,
+                  child: Body(
+                    expenseItems: expenses.sortByMonth(selectedDate),
+                    totalPrice: totalPrice,
+                    deleteExpense: deleteExpense,
+                  ),
+                )
+              : Container(
+                  height: devicHeight,
+                  width: deviceWidth,
+                  child: Header(
+                      totalPrice: totalPrice,
+                      selectedDate: selectedDate,
+                      showMonthPick: showMonthPick,
+                      nextMonth: nextMonth,
+                      previousMonth: previousMonth),
+                ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double totalPrice = expenses.totalPrice(selectedDate);
     final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
 
+    final appbar = AppBar(
+      title: Text("My Wallet"),
+      centerTitle: true,
+    );
+    double devicHeight = MediaQuery.of(context).size.height -
+        appbar.preferredSize.height -
+        MediaQuery.of(context).padding.top;
+    print(devicHeight);
+    double deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: Text("My Wallet"),
-        centerTitle: true,
-      ),
+      appBar: appbar,
       body: Container(
         width: MediaQuery.of(context).size.width,
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Ro'yxatni ko'rsatish",
-                  style: TextStyle(fontSize: 18),
-                ),
-                Switch(
-                  value: _showExpensseList,
-                  onChanged: (value) {
-                    toggleSwitch();
-                  },
-                ),
-              ],
-            ),
-            Header(
-                totalPrice: totalPrice,
-                selectedDate: selectedDate,
-                showMonthPick: showMonthPick,
-                nextMonth: nextMonth,
-                previousMonth: previousMonth),
-            Body(
-              expenseItems: expenses.sortByMonth(selectedDate),
-              totalPrice: totalPrice,
-              deleteExpense: deleteExpense,
-            ),
-          ],
-        ),
+        child: isLandscape
+            ? _showLandscape(totalPrice, devicHeight, deviceWidth)
+            : _showPortrait(totalPrice, devicHeight, deviceWidth),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

@@ -12,15 +12,30 @@ class Expense {
     required this.title,
     required this.date,
     required this.amount,
-  required  this.icon ,
+    required this.icon,
   });
 }
 
 class Expenses {
   List<Expense> _items = [
-    Expense(id: "e1", title: "xarajat1", date: DateTime.now(), amount: 300000,icon: Icons.price_change),
-    Expense(id: "e2", title: "xarajat2", date: DateTime.now(), amount: 5000000,icon: Icons.price_change),
-    Expense(id: "e3", title: "xarajat3", date: DateTime.now(), amount: 800000,icon: Icons.price_change),
+    Expense(
+        id: "e1",
+        title: "xarajat1",
+        date: DateTime.now(),
+        amount: 300000,
+        icon: Icons.price_change),
+    Expense(
+        id: "e2",
+        title: "xarajat2",
+        date: DateTime.now(),
+        amount: 5000000,
+        icon: Icons.price_change),
+    Expense(
+        id: "e3",
+        title: "xarajat3",
+        date: DateTime.now(),
+        amount: 800000,
+        icon: Icons.price_change),
   ];
 
   List<Expense> get items {
@@ -34,7 +49,7 @@ class Expenses {
         title: title,
         date: date,
         amount: amount,
-        icon:  icon,
+        icon: icon,
       ),
     );
   }

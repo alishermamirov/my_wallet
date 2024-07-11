@@ -16,49 +16,51 @@ class ExpenseList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 0,
-      right: 0,
-      left: 0,
-      child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 380,
-          clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(30),
-              topLeft: Radius.circular(30),
-            ),
+    return LayoutBuilder(builder: (context, constrains) {
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        margin: const EdgeInsets.only(top: 100),
+        height: constrains.maxHeight - 100,
+        clipBehavior: Clip.hardEdge,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(30),
+            topLeft: Radius.circular(30),
           ),
-          child: expenseItems.length > 0
-              ? ListView.builder(
-                  itemCount: expenseItems.length,
-                  itemBuilder: (context, index) {
-                    return ListItem(expense: expenseItems[index], deleteExpense: deleteExpense,);
-                  },
-                )
-              : Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Xarajat yo'q",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+        ),
+        child: expenseItems.length > 0
+            ? ListView.builder(
+                itemCount: expenseItems.length,
+                itemBuilder: (context, index) {
+                  return ListItem(
+                    expense: expenseItems[index],
+                    deleteExpense: deleteExpense,
+                  );
+                },
+              )
+            : Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    const Text(
+                      "Xarajat yo'q",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Image.asset(
-                        "assets/money-bag.png",
-                        width: 200,
-                      )
-                    ],
-                  ),
-                )),
-    );
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Image.asset(
+                      "assets/money-bag.png",
+                      width: 200,
+                    )
+                  ],
+                ),
+              ),
+      );
+    });
   }
 }
