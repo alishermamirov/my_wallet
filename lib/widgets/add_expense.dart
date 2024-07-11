@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:intl/intl.dart';
 
 class AddExpense extends StatefulWidget {
@@ -16,6 +17,7 @@ class AddExpense extends StatefulWidget {
 
 class _AddExpenseState extends State<AddExpense> {
   DateTime? selectedDate;
+  IconData? _selectedIcon;
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
@@ -36,6 +38,17 @@ class _AddExpenseState extends State<AddExpense> {
     );
   }
 
+  void showIcons(BuildContext context){
+    showIconPicker(context,iconPackModes: [IconPack.allMaterial,IconPack.cupertino ] , ).then((value) {
+      setState(() {
+       if(value!=null){
+         _selectedIcon=value;
+       }
+      });
+    },);
+  }
+  
+
   void submit(BuildContext context) {
     if (titleController.text.isNotEmpty &&
         amountController.text.isNotEmpty &&
@@ -45,6 +58,7 @@ class _AddExpenseState extends State<AddExpense> {
         titleController.text,
         selectedDate,
         double.parse(amountController.text),
+        _selectedIcon,
       );
 
       Navigator.pop(context);
@@ -97,9 +111,9 @@ class _AddExpenseState extends State<AddExpense> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Ikonka tanlanmagan"),
+             _selectedIcon==null?   Text("Ikonka tanlanmagan"):Icon(_selectedIcon),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () =>showIcons(context),
                   child: Text("ikonka tanlash"),
                 ),
               ],

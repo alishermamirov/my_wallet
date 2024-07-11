@@ -62,9 +62,15 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void addExpenses(String title, DateTime date, double amount) {
+  void addExpenses(String title, DateTime date, double amount, IconData icon) {
     setState(() {
-      expenses.addExpense(title, date, amount);
+      expenses.addExpense(title, date, amount, icon);
+    });
+  }
+
+  void deleteExpense(String id){
+    setState(() {
+      expenses.deleteExpense(id);
     });
   }
 
@@ -87,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 showMonthPick: showMonthPick,
                 nextMonth: nextMonth,
                 previousMonth: previousMonth),
-            Body(expenseItems: expenses.sortByMonth(selectedDate),totalPrice:totalPrice),
+            Body(expenseItems: expenses.sortByMonth(selectedDate),totalPrice:totalPrice, deleteExpense: deleteExpense,),
           ],
         ),
       ),

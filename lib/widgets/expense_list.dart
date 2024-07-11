@@ -6,10 +6,12 @@ import 'package:shaxsiyhamyon/widgets/list_item.dart';
 
 class ExpenseList extends StatelessWidget {
   final List<Expense> expenseItems;
+  final Function deleteExpense;
 
   const ExpenseList({
     Key? key,
     required this.expenseItems,
+    required this.deleteExpense,
   }) : super(key: key);
 
   @override
@@ -33,7 +35,7 @@ class ExpenseList extends StatelessWidget {
               ? ListView.builder(
                   itemCount: expenseItems.length,
                   itemBuilder: (context, index) {
-                    return ListItem(expense: expenseItems[index]);
+                    return ListItem(expense: expenseItems[index], deleteExpense: deleteExpense,);
                   },
                 )
               : Padding(
